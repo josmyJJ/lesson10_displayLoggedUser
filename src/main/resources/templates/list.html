@@ -1,12 +1,23 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="www.thymelear.org">
+<html lang="en" xmlns:th="www.thymelear.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8" />
     <title>Movie List</title>
 </head>
 <body>
 
-<a href="/add">Add a Movie</a><br/>
+
+
+<div sec:authorize="hasAuthority('ADMIN')">
+    <h3>Welcome Admin</h3>
+    <a href="/add">Add a Movie</a><br/>
+    <br/>
+</div>
+
+<div sec:authorize="hasAuthority('USER')">
+    <h3>Welcome Customer</h3>
+    <br/>
+</div>
 
 <table>
     <tr>
@@ -21,13 +32,20 @@
         <td th:text="${movie.description}"></td>
         <td th:text="${movie.year}"></td>
         <td>
-            <a th:href="@{/update/{id}(id=${movie.id})}">Update</a> -
-            <a th:href="@{/detail/{id}(id=${movie.id})}">Details</a> -
-            <a th:href="@{/delete/{id}(id=${movie.id})}">Delete</a>
+            <div sec:authorize="hasAuthority('USER')">
+                <a th:href="@{/detail/{id}(id=${movie.id})}">Details</a>
+            </div>
+
+            <div sec:authorize="hasAuthority('ADMIN')">
+                <a th:href="@{/detail/{id}(id=${movie.id})}">Details</a> -
+                <a th:href="@{/update/{id}(id=${movie.id})}">Update</a> -
+                <a th:href="@{/delete/{id}(id=${movie.id})}">Delete</a>
+            </div>
+
         </td>
     </tr>
 </table>
-
+<br/>
 <a href="/logout">Logout</a>
 </body>
 </html>

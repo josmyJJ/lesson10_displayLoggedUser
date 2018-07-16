@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymelear.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Movie List</title>
+</head>
+<body>
+
+<a href="/add">Add a Movie</a><br/>
+
+<table>
+    <tr>
+        <th>Movie Title</th>
+        <th>Description</th>
+        <th>Year</th>
+        <th>Action</th>
+    </tr>
+
+    <tr th:each="movie : ${movies}">
+        <td th:text="${movie.movieName}"></td>
+        <td th:text="${movie.description}"></td>
+        <td th:text="${movie.year}"></td>
+        <td>
+            <a th:href="@{/update/{id}(id=${movie.id})}">Update</a> -
+            <a th:href="@{/detail/{id}(id=${movie.id})}">Details</a> -
+            <a th:href="@{/delete/{id}(id=${movie.id})}">Delete</a>
+        </td>
+    </tr>
+</table>
+
+
+</body>
+</html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Show Movie</title>
+</head>
+<body>
+
+<a href="/">Show All Movies</a><br/>
+
+Movie name : <span th:text="${movie.movieName}"></span><br/>
+Description : <p th:text="${movie.description}"></p>
+Year : <span th:text="${movie.year}"></span><br/><br/>
+<a th:href="@{/delete/{id}(id=${movie.id})}">Delete this movie</a>
+</body>
+</html>

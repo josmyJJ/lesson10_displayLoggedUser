@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Movie Form</title>
+</head>
+<body>
+
+<form action="#"
+    th:action="@{/process}"
+    th:object="${movie}"
+    method="post">
+
+    <input type="hidden" th:field="*{id}" />
+    Movie name : <input type="text" th:field="*{movieName}" />
+    <span th:if="${#fields.hasErrors('movieName')}"
+          th:errors="*{movieName}"></span><br/>
+
+    Description : <textarea rows="3" th:field="*{description}" />
+    <span th:if="${#fields.hasErrors('description')}"
+          th:errors="*{description}"></span><br/>
+
+    Year : <input type="text" th:field="*{year}" />
+    <span th:if="${#fields.hasErrors('year')}"
+          th:errors="*{year}"></span><br/>
+
+    <input type="submit" value="Submit" />
+</form>
+
+</body>
+</html>

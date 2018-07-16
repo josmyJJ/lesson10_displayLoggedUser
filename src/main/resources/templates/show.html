@@ -1,10 +1,20 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="www.thymeleaf.org">
+<html lang="en" xmlns:th="www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8" />
     <title>Show Movie</title>
 </head>
 <body>
+
+<div sec:authorize="hasAuthority('ADMIN')">
+    <h3>Welcome Admin</h3>
+</div>
+
+<div sec:authorize="hasAuthority('USER')">
+    <h3>Welcome Customer</h3>
+    <br/>
+</div>
+
 
 <a href="/">Show All Movies</a><br/>
 
